@@ -11,25 +11,17 @@ block content
         .card-text.mt-5
           form(action='/submit', method='POST')
             .input-group.mb-3
-              input.form-control(type='text', placeholder='Input your todo', aria-label="Recipient's username", aria-describedby='button-addon2')
+              input.form-control(type='text', placeholder='Input your todo', aria-label="Recipient's username", aria-describedby='button-addon2', name='item')
               .input-group-append
                 button#button-addon2.btn.btn-outline-primary(type='submit') Submit
       .card-body
         .card-title
           h3 The todo task
         ul.list-group
+        each val,i in todos 
           li.list-group-item.d-flex.justify-content-between.align-items-center
-            p.lead This is the first task
+            p.lead #{val.item}
             span.badge
               button.btn.btn-success.mr-5(type='button') Edit
               button.btn.btn-danger(type='button') Delete
-          li.list-group-item.d-flex.justify-content-between.align-items-center
-            p.lead This is the first task
-            span.badge
-              button.btn.btn-success.mr-5(type='button') Edit
-              button.btn.btn-danger(type='button') Delete
-          li.list-group-item.d-flex.justify-content-between.align-items-center
-            p.lead This is the first task
-            span.badge
-              button.btn.btn-success.mr-5(type='button') Edit
-              button.btn.btn-danger(type='button') Delete
+          
