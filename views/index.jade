@@ -21,8 +21,8 @@ block content
         each val,i in todos 
           li.list-group-item.d-flex.justify-content-between.align-items-center
             p.lead #{val.item}
-            span
-            form(action="/edit/#{val._id}", method="POST")
+            form(action="/edit/#{val._id}", method="PUT")
               button.btn.btn-success.mr-5(type='submit') Edit
-              button.btn.btn-danger(type='submit',action='/database/#{entry._id}?_method=DELETE') Delete
+            form(action="/delete/#{val._id}")
+              button.btn.btn-danger(type='submit') Delete
           
