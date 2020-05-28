@@ -11,7 +11,7 @@ block content
         .card-text.mt-5
           form(action='/submit', method='POST')
             .input-group.mb-3
-              input.form-control(type='text', placeholder='Input your todo', aria-label="Recipient's username", aria-describedby='button-addon2', name='item')
+              input.form-control(type='text', placeholder='Input your todo', name='item')
               .input-group-append
                 button#button-addon2.btn.btn-outline-primary Submit
       .card-body
@@ -20,8 +20,10 @@ block content
         ul.list-group
         each val,i in todos 
           li.list-group-item.d-flex.justify-content-between.align-items-center
-            p.lead #{val.item}
-            span.badge  
+            form(action="/edit/#{val._id}",method ="POST")
+              p.lead= val.item
+              input.form-control(type="text", name='task', value = val.item)
+              button.btn.btn-primary Edit
             form(action="/delete/#{val._id}", method="POST") 
-                button.btn.btn-danger Delete
+              button.btn.btn-danger Delete
           

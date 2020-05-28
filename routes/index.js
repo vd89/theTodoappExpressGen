@@ -32,8 +32,7 @@ router.post('/submit', async (req,res) => {
 })
 
 router.post('/delete/:id',async(req,res)=>{
-  try {
-    
+  try {    
     const id = req.params.id
    await Todo.deleteOne({_id:id},(err)=>{
        if (err) {
@@ -45,8 +44,20 @@ router.post('/delete/:id',async(req,res)=>{
   } catch (error) {
     res.send(error)
   }
-       
-
 })
 
+router.post('/edit/:id', (req,res) => {
+  
+    const id = req.params.id
+    // console.log(`Edit task`);
+    const {task} = req.body
+    console.log(task);
+    Todo.findByIdAndUpdate({_id:id},{$set: {item:task}},{useFindeAndModify:false},err=>{
+      if (err) {
+        res.send(err)
+      } else {
+        res.redirect('/')
+      }
+    })
+})
 module.exports = router;
