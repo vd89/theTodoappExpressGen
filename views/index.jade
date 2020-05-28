@@ -13,7 +13,7 @@ block content
             .input-group.mb-3
               input.form-control(type='text', placeholder='Input your todo', aria-label="Recipient's username", aria-describedby='button-addon2', name='item')
               .input-group-append
-                button#button-addon2.btn.btn-outline-primary(type='submit') Submit
+                button#button-addon2.btn.btn-outline-primary Submit
       .card-body
         .card-title
           h3 The todo task
@@ -21,7 +21,7 @@ block content
         each val,i in todos 
           li.list-group-item.d-flex.justify-content-between.align-items-center
             p.lead #{val.item}
-            span.badge       
-              
-                a.btn.btn-danger(type='submit', href="/delete/#{val._id}") Delete
+            span.badge  
+            form(action="/delete/#{val._id}", method="POST") 
+                button.btn.btn-danger Delete
           
