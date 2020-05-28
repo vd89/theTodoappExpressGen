@@ -33,14 +33,12 @@ router.post('/submit', async (req,res) => {
 
 router.delete('/delete/:id',async(req,res)=>{
   const id = req.params.id
-  await Todo.deleteOne({_id:id})
-  await Todo.find({},(err,data) => {
-    if (err) {
-      res.send(err)
-    } else {
-      res.render('index',{todos:data})
-    }
-  })
+  try {
+   Todo.deleteOne({_id:id})
+       res.send("deleted item") 
+  } catch (err) {
+    res.send(err)
+  }
 })
 
 module.exports = router;
